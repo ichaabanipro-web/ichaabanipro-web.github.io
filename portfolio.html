@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Illiani Chaabani — Portfolio BTS SIO</title>
+<meta name="description" content="Portfolio de Illiani Chaabani, étudiant en BTS SIO option SISR, alternant technicien support informatique chez Veepee.">
+<style>
+  :root {
+    --bg: #0f1419;
+    --bg-alt: #161d24;
+    --card: #1b232c;
+    --border: #2a3540;
+    --text: #e6edf3;
+    --muted: #9aa7b4;
+    --accent: #3fb68b;
+    --accent-soft: rgba(63, 182, 139, 0.12);
+    --radius: 14px;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #f7f9fb;
+      --bg-alt: #eef2f5;
+      --card: #ffffff;
+      --border: #dde3e9;
+      --text: #1a222b;
+      --muted: #5b6875;
+      --accent: #1f8a64;
+      --accent-soft: rgba(31, 138, 100, 0.10);
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+
+  /* Navigation */
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 16px; }
+  .logo { font-weight: 700; color: var(--text); font-size: 1.05rem; white-space: nowrap; }
+  .logo span { color: var(--accent); }
+  nav ul { display: flex; gap: 20px; list-style: none; overflow-x: auto; }
+  nav ul a { color: var(--muted); font-size: 0.92rem; white-space: nowrap; }
+  nav ul a:hover { color: var(--text); text-decoration: none; }
+
+  /* Hero */
+  header.hero { padding: 80px 0 64px; }
+  .tag {
+    display: inline-block; font-size: 0.82rem; font-weight: 600;
+    color: var(--accent); background: var(--accent-soft);
+    padding: 5px 12px; border-radius: 999px; margin-bottom: 18px;
+  }
+  .hero h1 { font-size: clamp(2rem, 5vw, 3.1rem); line-height: 1.15; margin-bottom: 14px; }
+  .hero p.lead { font-size: 1.12rem; color: var(--muted); max-width: 640px; margin-bottom: 28px; }
+  .btns { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-block; padding: 11px 20px; border-radius: 10px;
+    font-weight: 600; font-size: 0.95rem; border: 1px solid var(--border);
+    color: var(--text); background: var(--card);
+  }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .btn:hover { text-decoration: none; opacity: 0.9; }
+
+  /* Sections */
+  section { padding: 64px 0; border-top: 1px solid var(--border); }
+  section:nth-of-type(even) { background: var(--bg-alt); }
+  h2 { font-size: 1.7rem; margin-bottom: 8px; }
+  .sub { color: var(--muted); margin-bottom: 32px; max-width: 680px; }
+  h3 { font-size: 1.08rem; margin-bottom: 6px; }
+
+  .grid { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); }
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 22px;
+  }
+  .card p { color: var(--muted); font-size: 0.95rem; }
+  .card ul { color: var(--muted); font-size: 0.93rem; padding-left: 18px; margin-top: 10px; }
+  .card ul li { margin-bottom: 4px; }
+  .meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .pill {
+    font-size: 0.76rem; padding: 3px 10px; border-radius: 999px;
+    border: 1px solid var(--border); color: var(--muted);
+  }
+  .pill.c { color: var(--accent); border-color: var(--accent); }
+
+  /* Timeline */
+  .timeline { border-left: 2px solid var(--border); padding-left: 24px; display: grid; gap: 26px; }
+  .tl-item { position: relative; }
+  .tl-item::before {
+    content: ""; position: absolute; left: -31px; top: 6px;
+    width: 12px; height: 12px; border-radius: 50%;
+    background: var(--accent); border: 3px solid var(--bg);
+  }
+  .tl-date { font-size: 0.85rem; color: var(--accent); font-weight: 600; }
+  .tl-item p { color: var(--muted); font-size: 0.95rem; }
+
+  /* Tableau compétences */
+  .table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); }
+  table { width: 100%; border-collapse: collapse; font-size: 0.9rem; min-width: 760px; }
+  th, td { padding: 12px 14px; border-bottom: 1px solid var(--border); text-align: center; }
+  th { font-size: 0.8rem; color: var(--muted); font-weight: 600; background: var(--bg-alt); }
+  td:first-child, th:first-child { text-align: left; }
+  tr:last-child td { border-bottom: none; }
+  .ok { color: var(--accent); font-weight: 700; }
+
+  /* Veille */
+  .veille { display: grid; gap: 18px; grid-template-columns: 1.4fr 1fr; }
+  @media (max-width: 760px) { .veille { grid-template-columns: 1fr; } }
+
+  footer { padding: 40px 0; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.88rem; text-align: center; }
+
+  @media (max-width: 640px) {
+    nav ul { gap: 14px; }
+    header.hero { padding: 56px 0 44px; }
+    section { padding: 48px 0; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#">Illiani <span>Chaabani</span></a>
+    <ul>
+      <li><a href="#parcours">Parcours</a></li>
+      <li><a href="#realisations">Réalisations</a></li>
+      <li><a href="#projets">Projets</a></li>
+      <li><a href="#competences">Compétences</a></li>
+      <li><a href="#veille">Veille</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="tag">BTS SIO — option SISR</span>
+    <h1>Illiani Chaabani<br>Technicien support informatique</h1>
+    <p class="lead">Étudiant en BTS Services Informatiques aux Organisations à l'IPSSI, en alternance chez Veepee depuis septembre 2025. Déploiement de postes, gestion de parc, Active Directory, Microsoft 365 et résolution d'incidents au quotidien.</p>
+    <div class="btns">
+      <a class="btn primary" href="#realisations">Voir mes réalisations</a>
+      <a class="btn" href="cv.pdf" target="_blank">Télécharger mon CV</a>
+    </div>
+  </div>
+</header>
+
+<!-- PARCOURS -->
+<section id="parcours">
+  <div class="wrap">
+    <h2>Parcours</h2>
+    <p class="sub">Une reconversion vers l'informatique, construite sur le terrain.</p>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">Septembre 2025 — aujourd'hui</div>
+        <h3>Alternance — Technicien support informatique, Veepee</h3>
+        <p>Support aux utilisateurs, déploiement et remastérisation de postes Windows, gestion du parc dans GLPI, administration Active Directory et Google Workspace, gestion des salles de réunion.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2025 — 2027</div>
+        <h3>BTS SIO option SISR — IPSSI</h3>
+        <p>Solutions d'infrastructure, systèmes et réseaux : virtualisation Proxmox, Windows Server, Active Directory, pare-feu, DMZ, VLAN.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Avant l'informatique</div>
+        <h3>Agent de sécurité — grands événements</h3>
+        <p>Gestion de flux de public, réactivité face aux imprévus et sens des responsabilités, des qualités que je retrouve aujourd'hui dans le support.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RÉALISATIONS PROFESSIONNELLES -->
+<section id="realisations">
+  <div class="wrap">
+    <h2>Réalisations professionnelles</h2>
+    <p class="sub">Situations réelles rencontrées pendant mon alternance chez Veepee.</p>
+    <div class="grid">
+
+      <div class="card">
+        <h3>Déploiement automatisé de postes Windows</h3>
+        <p>Installation de postes Windows sans intervention grâce à un fichier de réponse <code>autounattend.xml</code>, et remastérisation avec FOG.</p>
+        <ul>
+          <li>Environ 150 postes déployés sur l'alternance</li>
+          <li>Au moins 8 postes par semaine</li>
+          <li>Arrivées de nouveaux employés et remise à zéro au départ</li>
+          <li>Numéro de série référencé dans GLPI</li>
+        </ul>
+        <div class="meta"><span class="pill">Windows</span><span class="pill">FOG</span><span class="pill">GLPI</span><span class="pill c">Patrimoine</span></div>
+      </div>
+
+      <div class="card">
+        <h3>Remplacement de postes compromis</h3>
+        <p>À la demande du service cybersécurité, remplacement des ordinateurs d'utilisateurs victimes d'un piratage, puis remastérisation complète des postes compromis.</p>
+        <div class="meta"><span class="pill">Cybersécurité</span><span class="pill">Remastérisation</span><span class="pill c">Incidents</span></div>
+      </div>
+
+      <div class="card">
+        <h3>Incident Wi-Fi après mise à jour Windows</h3>
+        <p>Une mise à jour Windows a coupé le Wi-Fi de la quasi-totalité des employés. Résolution par retour à la version précédente ou par modification du registre (service <code>WcmSvc</code>, clé <code>DependOnService</code>).</p>
+        <div class="meta"><span class="pill">Windows</span><span class="pill">Registre</span><span class="pill c">Incidents</span></div>
+      </div>
+
+      <div class="card">
+        <h3>Renouvellement du parc informatique</h3>
+        <p>Remplacement des Dell Latitude 5420 en fin de vie par des Dell Pro 14 : réception des postes, mise à jour de GLPI, remastérisation et communication avec les utilisateurs.</p>
+        <div class="meta"><span class="pill">Dell</span><span class="pill">GLPI</span><span class="pill c">Patrimoine</span></div>
+      </div>
+
+      <div class="card">
+        <h3>Docks Dell et doubles écrans</h3>
+        <p>Écran qui se met en veille au branchement d'un deuxième moniteur (WD19 / WD22TB4). Résolu par mise à jour du firmware du dock, ou remplacement du boîtier et de son alimentation.</p>
+        <div class="meta"><span class="pill">Matériel</span><span class="pill">Firmware</span><span class="pill c">Incidents</span></div>
+      </div>
+
+      <div class="card">
+        <h3>Comptes et droits d'accès</h3>
+        <p>Réinitialisations de mot de passe dans l'Active Directory, attribution de droits sur les partages réseau (méthode AGDLP) et sur Google Drive, transfert des données d'un employé sortant.</p>
+        <div class="meta"><span class="pill">Active Directory</span><span class="pill">Google Admin</span><span class="pill c">Service</span></div>
+      </div>
+
+      <div class="card">
+        <h3>Salles de réunion Webex</h3>
+        <p>Maintenance des salles équipées Webex, en cours de bascule vers Google Room. Tablettes qui ne récupèrent pas leur adresse IP : réinitialisation ou configuration manuelle via l'admin Webex.</p>
+        <div class="meta"><span class="pill">Webex</span><span class="pill">Réseau</span><span class="pill c">Service</span></div>
+      </div>
+
+      <div class="card">
+        <h3>Support utilisateurs du quotidien</h3>
+        <p>Caméras désactivées dans le BIOS, micros réparés par réinstallation du pilote, Wi-Fi qui disparaît, tickets logiciels traités via GLPI.</p>
+        <div class="meta"><span class="pill">Dell Latitude</span><span class="pill">GLPI</span><span class="pill c">Incidents</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJETS BTS -->
+<section id="projets">
+  <div class="wrap">
+    <h2>Projets de formation</h2>
+    <p class="sub">Travaux réalisés dans le cadre du BTS SIO.</p>
+    <div class="grid">
+
+      <div class="card">
+        <h3>Active Directory + GLPI sur Proxmox</h3>
+        <p>Projet d'examen : installation de Proxmox sur un Dell OptiPlex, puis d'un Windows Server 2025 promu contrôleur de domaine.</p>
+        <ul>
+          <li>DNS vérifié (résolution directe et inverse)</li>
+          <li>OU et sous-OU, groupes GG_Support_IT, GG_Commercial, GG_Direction</li>
+          <li>Prochaine étape : déploiement de GLPI</li>
+        </ul>
+        <div class="meta"><span class="pill">Proxmox</span><span class="pill">Windows Server 2025</span><span class="pill">AD DS</span><span class="pill">GLPI</span></div>
+      </div>
+
+      <div class="card">
+        <h3>LAN, WAN et DMZ sur Proxmox</h3>
+        <p>Atelier en binôme dans le contexte M2L : architecture avec pare-feu, DMZ hébergeant un serveur web Nginx et LAN client. J'ai pris en charge la partie client Windows dans le LAN.</p>
+        <div class="meta"><span class="pill">Proxmox</span><span class="pill">OPNsense / pfSense</span><span class="pill">Nginx</span><span class="pill">DMZ</span></div>
+      </div>
+
+      <div class="card">
+        <h3>Site de petites annonces</h3>
+        <p>Projet de groupe à quatre : site type « Le Bon Coin » avec schémas d'architecture, modèle de base de données et répartition des tâches par fonctionnalité.</p>
+        <div class="meta"><span class="pill">HTML / CSS</span><span class="pill">PHP</span><span class="pill">MySQL</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- COMPÉTENCES -->
+<section id="competences">
+  <div class="wrap">
+    <h2>Tableau de synthèse des compétences</h2>
+    <p class="sub">Compétences du bloc 1 du BTS SIO mobilisées dans chaque réalisation.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Réalisation</th>
+            <th>Gérer le patrimoine informatique</th>
+            <th>Répondre aux incidents et demandes</th>
+            <th>Développer la présence en ligne</th>
+            <th>Travailler en mode projet</th>
+            <th>Mettre à disposition un service</th>
+            <th>Développement professionnel</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Déploiement automatisé Windows</td><td class="ok">✓</td><td></td><td></td><td class="ok">✓</td><td class="ok">✓</td><td></td></tr>
+          <tr><td>Remplacement de postes compromis</td><td class="ok">✓</td><td class="ok">✓</td><td></td><td></td><td class="ok">✓</td><td></td></tr>
+          <tr><td>Incident Wi-Fi mise à jour Windows</td><td></td><td class="ok">✓</td><td></td><td></td><td class="ok">✓</td><td></td></tr>
+          <tr><td>Renouvellement du parc</td><td class="ok">✓</td><td></td><td></td><td class="ok">✓</td><td class="ok">✓</td><td></td></tr>
+          <tr><td>Comptes et droits d'accès</td><td></td><td class="ok">✓</td><td></td><td></td><td class="ok">✓</td><td></td></tr>
+          <tr><td>AD + GLPI sur Proxmox</td><td class="ok">✓</td><td></td><td></td><td class="ok">✓</td><td class="ok">✓</td><td></td></tr>
+          <tr><td>Portfolio GitHub Pages</td><td></td><td></td><td class="ok">✓</td><td></td><td></td><td class="ok">✓</td></tr>
+          <tr><td>Veille technologique</td><td></td><td></td><td></td><td></td><td></td><td class="ok">✓</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- VEILLE -->
+<section id="veille">
+  <div class="wrap">
+    <h2>Veille technologique</h2>
+    <p class="sub">Protection des postes de travail contre les cyberattaques.</p>
+    <div class="veille">
+      <div class="card">
+        <h3>Pourquoi ce sujet</h3>
+        <p>Chez Veepee, j'ai dû remplacer et remastériser des postes d'utilisateurs piratés. Cette expérience m'a donné envie de mieux comprendre les menaces qui visent les postes de travail et les moyens de s'en protéger.</p>
+        <ul>
+          <li>Nouvelles menaces visant les postes (hameçonnage, rançongiciels…)</li>
+          <li>Solutions de protection : EDR, antivirus, durcissement Windows</li>
+          <li>Bonnes pratiques et sensibilisation des utilisateurs</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Méthode</h3>
+        <p>Suivi régulier grâce à Google Alertes sur des mots-clés ciblés, complété par la lecture de sources spécialisées.</p>
+        <div class="meta"><span class="pill">Google Alertes</span><span class="pill">Cybersécurité</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <h2>Contact</h2>
+    <p class="sub">N'hésitez pas à me contacter pour toute question sur mon parcours.</p>
+    <div class="btns">
+      <a class="btn primary" href="mailto:votre.email@exemple.com">votre.email@exemple.com</a>
+      <a class="btn" href="https://www.linkedin.com/in/votre-profil" target="_blank">LinkedIn</a>
+      <a class="btn" href="https://github.com/ichaabanipro-web" target="_blank">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Illiani Chaabani — Portfolio BTS SIO SISR
+</footer>
+
+</body>
+</html>
