@@ -94,6 +94,16 @@
   .card p { color: var(--muted); font-size: 0.94rem; }
   .card ul { color: var(--muted); font-size: 0.92rem; padding-left: 18px; margin-top: 8px; }
 
+  /* École et entreprise : blocs en pleine largeur */
+  .stack { display: grid; gap: 20px; }
+  .stack .card { padding: 28px 32px; }
+  .stack .card p, .stack .card ul { font-size: 0.98rem; max-width: none; }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 16px 0 6px; }
+  .stat { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 12px; padding: 14px; text-align: center; }
+  .stat b { display: block; font-size: 1.4rem; color: var(--accent); }
+  .stat span { font-size: 0.82rem; color: var(--muted); }
+  @media (max-width: 700px) { .stats { grid-template-columns: repeat(2, 1fr); } .stack .card { padding: 22px; } }
+
   /* Blocs cliquables */
   .tile {
     cursor: pointer; transition: transform 0.15s, border-color 0.15s, background 0.15s;
@@ -139,6 +149,9 @@
   td:first-child, th:first-child { text-align: left; }
   tr:last-child td { border-bottom: none; }
   .ok { color: var(--accent); font-weight: 700; }
+  td .doc { font-size: 0.8rem; color: var(--muted); }
+  tr.sec td { background: var(--accent-soft); color: var(--accent); font-weight: 700; font-size: 0.85rem; text-align: left; }
+  tbody td:first-child { min-width: 320px; }
 
   /* Fenêtre de détail */
   .overlay {
@@ -200,19 +213,28 @@
         <p class="muted" style="margin-top:10px">Ma candidature en BTS SIO via Parcoursup n'ayant pas été retenue, j'ai choisi la voie de l'alternance. J'ai multiplié les candidatures jusqu'à décrocher un contrat chez Veepee, où je suis technicien support informatique depuis septembre 2025, en parallèle de mon BTS SIO à l'IPSSI.</p>
         <p class="muted" style="margin-top:10px">Au quotidien, je déploie des postes de travail, je gère le parc informatique, j'administre les comptes et je résous les incidents des utilisateurs.</p>
         <p class="muted" style="margin-top:10px">Avant l'informatique, j'ai travaillé comme agent de sécurité sur de grands événements : une expérience qui m'a appris la réactivité et le sens des responsabilités.</p>
-        <div class="btns">
-          <a class="btn primary" data-go="projets">Voir mes projets</a>
-          <a class="btn" href="cv.pdf" target="_blank">Télécharger mon CV</a>
-        </div>
       </div>
     </div>
 
-    <h2>Accès rapide</h2>
-    <div class="grid">
-      <button class="card tile" data-go="ecole"><span class="icon">🏫</span><h3>École et entreprise</h3><p>Mon parcours à l'IPSSI et mon alternance chez Veepee.</p><span class="more">Découvrir →</span></button>
-      <button class="card tile" data-go="epreuves"><span class="icon">📝</span><h3>Épreuves</h3><p>Réalisations professionnelles et tableau de synthèse E5.</p><span class="more">Découvrir →</span></button>
-      <button class="card tile" data-go="projets"><span class="icon">🖥️</span><h3>Projets</h3><p>Travaux techniques réalisés en formation et en entreprise.</p><span class="more">Découvrir →</span></button>
-      <button class="card tile" data-go="veille"><span class="icon">🛡️</span><h3>Veille technologique</h3><p>Protection des postes de travail contre les cyberattaques.</p><span class="more">Découvrir →</span></button>
+    <h2>Parcours professionnel</h2>
+    <div class="timeline">
+      <div class="tl"><div class="date">Septembre 2025 — aujourd'hui</div><h3>Technicien support informatique (alternance) — Veepee</h3><p>Support aux utilisateurs, déploiement et remastérisation de postes, gestion du parc dans GLPI, comptes Active Directory et salles de réunion.</p></div>
+      <div class="tl"><div class="date">2025 — 2027</div><h3>BTS SIO option SISR — IPSSI</h3><p>Formation en alternance : systèmes, réseaux, virtualisation et sécurité.</p></div>
+      <div class="tl"><div class="date">2025</div><h3>Réorientation vers l'informatique</h3><p>Candidature Parcoursup non retenue : je me tourne vers l'alternance et décroche un contrat chez Veepee.</p></div>
+      <div class="tl"><div class="date">2023</div><h3>Licence hors informatique</h3><p>Une première orientation qui ne me correspondait pas.</p></div>
+      <div class="tl"><div class="date">Avant l'informatique</div><h3>Agent de sécurité — grands événements</h3><p>Gestion de flux, réactivité, travail en équipe.</p></div>
+    </div>
+
+    <h2>Mon CV</h2>
+    <div class="card" style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px;">
+      <div>
+        <h3>📄 Curriculum vitae</h3>
+        <p>Mon parcours, mes compétences et mes expériences en détail.</p>
+      </div>
+      <div class="btns" style="margin-top:0">
+        <a class="btn" href="cv.pdf" target="_blank">Voir le CV</a>
+        <a class="btn primary" href="cv.pdf" download>Télécharger</a>
+      </div>
     </div>
   </div></div>
 </section>
@@ -225,7 +247,7 @@
     <p>Deux années entre la théorie à l'IPSSI et la pratique chez Veepee.</p>
   </div></div>
   <div class="content"><div class="wrap">
-    <div class="grid">
+    <div class="stack">
       <div class="card">
         <span class="icon" style="font-size:1.7rem">🏫</span>
         <h3>IPSSI — BTS SIO option SISR</h3>
@@ -240,13 +262,12 @@
         <h3>Veepee — Technicien support informatique</h3>
         <p>Veepee (anciennement vente-privee.com) a été fondée en 2001 par Jacques-Antoine Granjon, qui la dirige en tant que PDG. Pionnière des ventes événementielles en ligne, c'est une entreprise française dont le siège est à Saint-Denis.</p>
         <p style="margin-top:8px"><strong>Son activité :</strong> proposer aux membres, pendant une durée limitée, des produits de grandes marques à prix réduits, dans de nombreux univers (mode, maison, vin, voyage, beauté…). Pour les marques, c'est un moyen d'écouler leurs stocks sans abîmer leur image.</p>
-        <p style="margin-top:8px"><strong>Quelques chiffres :</strong></p>
-        <ul>
-          <li>Environ 5 000 collaborateurs</li>
-          <li>Présence dans 10 pays, principalement en Europe</li>
-          <li>Plus de 7 000 marques partenaires</li>
-          <li>3,3 milliards d'euros TTC de ventes en 2024</li>
-        </ul>
+        <div class="stats">
+          <div class="stat"><b>5 000</b><span>collaborateurs</span></div>
+          <div class="stat"><b>10</b><span>pays, surtout en Europe</span></div>
+          <div class="stat"><b>7 000+</b><span>marques partenaires</span></div>
+          <div class="stat"><b>3,3 Md€</b><span>de ventes TTC en 2024</span></div>
+        </div>
         <p style="margin-top:8px"><strong>Ses points forts :</strong> un modèle qu'elle a inventé et qui a été copié partout en Europe, des dizaines de millions de membres, une logistique intégrée, des initiatives de seconde main, et la certification Top Employer pour ses pratiques RH.</p>
         <p style="margin-top:8px"><strong>Sa place en France :</strong> Veepee est l'un des acteurs majeurs du e-commerce français. Elle est leader des ventes événementielles en France et figure régulièrement parmi les sites marchands les plus visités du pays.</p>
         <p style="margin-top:8px"><strong>Mes responsabilités :</strong> en alternance au sein du support informatique depuis septembre 2025, je suis chargé de :</p>
@@ -258,22 +279,7 @@
           <li><strong>Salles de réunion</strong> : maintenance des équipements Webex et accompagnement de la bascule vers Google Room</li>
           <li><strong>Sécurité</strong> : remplacement et remastérisation des postes compromis, à la demande du service cybersécurité</li>
         </ul>
-        <ul>
-          <li>Support aux utilisateurs et tickets GLPI</li>
-          <li>Déploiement et remastérisation de postes (FOG)</li>
-          <li>Active Directory, Google Workspace, Microsoft 365</li>
-          <li>Gestion du parc et des salles de réunion</li>
-        </ul>
       </div>
-    </div>
-
-    <h2>Mon parcours</h2>
-    <div class="timeline">
-      <div class="tl"><div class="date">Septembre 2025 — aujourd'hui</div><h3>Alternance chez Veepee</h3><p>Technicien support informatique.</p></div>
-      <div class="tl"><div class="date">2025 — 2027</div><h3>BTS SIO option SISR — IPSSI</h3><p>Formation en alternance.</p></div>
-      <div class="tl"><div class="date">2025</div><h3>Recherche d'alternance</h3><p>Candidature Parcoursup non retenue : je me tourne vers l'alternance et décroche un contrat chez Veepee.</p></div>
-      <div class="tl"><div class="date">2023</div><h3>Licence hors informatique</h3><p>Une première orientation qui ne me correspondait pas et qui m'a poussé à me réorienter vers l'informatique.</p></div>
-      <div class="tl"><div class="date">Avant l'informatique</div><h3>Agent de sécurité — grands événements</h3><p>Gestion de flux, réactivité, travail en équipe.</p></div>
     </div>
   </div></div>
 </section>
@@ -286,6 +292,12 @@
     <p>Situations réelles vécues pendant mon alternance. Cliquez sur un bloc pour voir le détail.</p>
   </div></div>
   <div class="content"><div class="wrap">
+    <div class="card" style="margin-bottom:32px; padding:28px 32px;">
+      <h3>📋 En quoi consiste l'épreuve E5 ?</h3>
+      <p style="margin-top:6px">L'épreuve E5, « Support et mise à disposition de services informatiques », est un oral de 40 minutes (coefficient 4). Elle évalue les compétences du bloc 1 du BTS SIO : gérer le patrimoine informatique, répondre aux incidents et aux demandes d'assistance, mettre à disposition des services, travailler en mode projet et organiser son développement professionnel.</p>
+      <p style="margin-top:8px">Le candidat s'appuie sur ses réalisations professionnelles, vécues en entreprise ou en formation, qu'il récapitule dans un tableau de synthèse et présente dans son portfolio. L'oral se déroule en deux temps : une présentation de ses réalisations, puis un entretien avec le jury.</p>
+    </div>
+
     <div class="grid">
       <button class="card tile" data-modal="deploiement"><span class="icon">💿</span><h3>Déploiement automatisé de postes Windows</h3><p>autounattend.xml, FOG et GLPI.</p><span class="more">Voir le détail →</span></button>
       <button class="card tile" data-modal="pirates"><span class="icon">🔒</span><h3>Remplacement de postes compromis</h3><p>À la demande du service cybersécurité.</p><span class="more">Voir le détail →</span></button>
@@ -298,26 +310,33 @@
     </div>
 
     <h2>Tableau de synthèse</h2>
+    <p class="muted" style="margin-bottom:16px">BTS SIO — Session 2026 · CHAABANI Illiani · IPSSI · Option SISR</p>
     <div class="table-wrap">
       <table>
         <thead><tr>
-          <th>Réalisation</th><th>Gérer le patrimoine informatique</th><th>Répondre aux incidents et demandes</th>
-          <th>Développer la présence en ligne</th><th>Travailler en mode projet</th>
-          <th>Mettre à disposition un service</th><th>Développement professionnel</th>
+          <th>Réalisations professionnelles</th><th>Gérer le patrimoine informatique</th><th>Répondre aux incidents et aux demandes d'assistance et d'évolution</th>
+          <th>Développer la présence en ligne de l'organisation</th><th>Travailler en mode projet</th>
+          <th>Mettre à disposition des utilisateurs un service informatique</th><th>Organiser son développement professionnel</th>
         </tr></thead>
         <tbody>
-          <tr><td>Déploiement automatisé Windows</td><td class="ok">✓</td><td></td><td></td><td class="ok">✓</td><td class="ok">✓</td><td></td></tr>
-          <tr><td>Remplacement de postes compromis</td><td class="ok">✓</td><td class="ok">✓</td><td></td><td></td><td class="ok">✓</td><td></td></tr>
-          <tr><td>Incident Wi-Fi mise à jour Windows</td><td></td><td class="ok">✓</td><td></td><td></td><td class="ok">✓</td><td></td></tr>
-          <tr><td>Renouvellement du parc</td><td class="ok">✓</td><td></td><td></td><td class="ok">✓</td><td class="ok">✓</td><td></td></tr>
-          <tr><td>Comptes et droits d'accès</td><td></td><td class="ok">✓</td><td></td><td></td><td class="ok">✓</td><td></td></tr>
-          <tr><td>AD + GLPI sur Proxmox</td><td class="ok">✓</td><td></td><td></td><td class="ok">✓</td><td class="ok">✓</td><td></td></tr>
-          <tr><td>Portfolio GitHub Pages</td><td></td><td></td><td class="ok">✓</td><td></td><td></td><td class="ok">✓</td></tr>
-          <tr><td>Veille technologique</td><td></td><td></td><td></td><td></td><td></td><td class="ok">✓</td></tr>
+          <tr class="sec"><td colspan="7">Réalisations en cours de formation</td></tr>
+          <tr><td><strong>Site de petites annonces type Leboncoin en groupe de 4 (HTML, CSS, PHP, MySQL) — 1ère année</strong><br><span class="doc">Doc : schéma de la base de données, schéma d'architecture, répartition des tâches, code source</span></td><td></td><td></td><td class="ok">✓</td><td class="ok">✓</td><td></td><td></td></tr>
+          <tr><td><strong>Création du portfolio web et veille technologique : la protection des postes de travail contre les cyberattaques</strong><br><span class="doc">Doc : URL du portfolio, fiches de synthèse, captures des Google Alertes configurées et des alertes reçues, sources suivies (CERT-FR, Cybermalveillance.gouv.fr)</span></td><td></td><td></td><td class="ok">✓</td><td></td><td></td><td class="ok">✓</td></tr>
+          <tr><td><strong>Mise en place d'un Active Directory et de GLPI sur Proxmox (Windows Server 2025) — 2ème année</strong><br><span class="doc">Doc : documentation technique, captures de la configuration</span></td><td class="ok">✓</td><td></td><td></td><td class="ok">✓</td><td class="ok">✓</td><td></td></tr>
+          <tr class="sec"><td colspan="7">Réalisations en milieu professionnel — 1ère année</td></tr>
+          <tr><td><strong>Remplacement d'un poste compromis suite à un incident de sécurité</strong><br><span class="doc">Doc : ticket GLPI, demande du service cyber (anonymisés)</span></td><td class="ok">✓</td><td class="ok">✓</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td><strong>Remastérisation du poste avec FOG et mise à jour dans GLPI</strong><br><span class="doc">Doc : procédure FOG, fiche du poste dans GLPI</span></td><td class="ok">✓</td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td><strong>Renouvellement du parc : remplacement des Dell Latitude 5420 en fin de vie par des Dell Pro 14 (inventaire GLPI, remastérisation, information des utilisateurs)</strong><br><span class="doc">Doc : fiches des postes dans GLPI, procédure de remastérisation, message envoyé aux utilisateurs (anonymisé)</span></td><td class="ok">✓</td><td></td><td></td><td></td><td class="ok">✓</td><td></td></tr>
+          <tr><td><strong>Incident Wi-Fi après une mise à jour Windows touchant la majorité des employés (retour à la version précédente ou modification du registre)</strong><br><span class="doc">Doc : tickets GLPI, procédure de résolution</span></td><td></td><td class="ok">✓</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td><strong>Écran qui ne s'allume pas sur un poste avec dock Dell (mise à jour du firmware ou remplacement du dock)</strong><br><span class="doc">Doc : ticket GLPI, procédure de mise à jour du firmware</span></td><td></td><td class="ok">✓</td><td></td><td></td><td></td><td></td></tr>
+          <tr class="sec"><td colspan="7">Réalisations en milieu professionnel — 2ème année</td></tr>
+          <tr><td><strong>Attribution des droits d'accès aux dossiers partagés (AD, méthode AGDLP, et Drive)</strong><br><span class="doc">Doc : ticket GLPI, captures des groupes et des droits</span></td><td class="ok">✓</td><td class="ok">✓</td><td></td><td></td><td></td><td></td></tr>
+          <tr><td><strong>Récupération des données utilisateur (Drive ou extraction du SSD)</strong><br><span class="doc">Doc : procédure de récupération des données</span></td><td class="ok">✓</td><td></td><td></td><td></td><td></td><td></td></tr>
+          <tr><td><strong>Réinitialisation de mots de passe dans l'Active Directory</strong><br><span class="doc">Doc : ticket GLPI, capture de la procédure (anonymisée)</span></td><td class="ok">✓</td><td class="ok">✓</td><td></td><td></td><td></td><td></td></tr>
         </tbody>
       </table>
     </div>
-    <div class="btns"><a class="btn" href="docs/tableau-synthese-e5.pdf" target="_blank">📄 Tableau de synthèse officiel (PDF)</a></div>
+    <div class="btns"><a class="btn primary" href="docs/Tableau_synthese_E5_CHAABANI.xlsx" download>📊 Télécharger le tableau de synthèse (Excel)</a></div>
   </div></div>
 </section>
 
