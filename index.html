@@ -7,21 +7,29 @@
 <meta name="description" content="Portfolio BTS SIO SISR d'Illiani Chaabani, alternant technicien support informatique chez Veepee.">
 <style>
   :root {
-    --bg: #0d1117;
-    --bg-alt: #131a22;
-    --card: #18212b;
-    --card-hover: #1f2a36;
-    --border: #2a3644;
-    --text: #e6edf3;
-    --muted: #9aa7b4;
-    --accent: #3fb68b;
-    --accent-soft: rgba(63, 182, 139, 0.12);
+    /* Palette : magenta Veepee + noir et blanc IPSSI */
+    --bg: #0c0910;
+    --bg-alt: #140f19;
+    --card: #1a1420;
+    --card-hover: #231a2b;
+    --border: #2f2438;
+    --text: #f4eef7;
+    --muted: #b3a6bd;
+    --accent: #ff3ea5;
+    --accent-2: #8b5cf6;
+    --accent-soft: rgba(255, 62, 165, 0.12);
+    --grad: linear-gradient(135deg, #ff3ea5 0%, #c13cf0 55%, #8b5cf6 100%);
     --radius: 14px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-    background: var(--bg); color: var(--text); line-height: 1.6;
+    background:
+      radial-gradient(900px 600px at 0% 0%, rgba(236, 0, 140, 0.10), transparent 60%),
+      radial-gradient(900px 700px at 100% 100%, rgba(139, 92, 246, 0.10), transparent 60%),
+      var(--bg);
+    background-attachment: fixed;
+    color: var(--text); line-height: 1.6;
     min-height: 100vh; display: flex; flex-direction: column;
   }
   a { color: var(--accent); text-decoration: none; }
@@ -31,13 +39,14 @@
   /* ---------- Menu ---------- */
   nav {
     position: sticky; top: 0; z-index: 20;
-    background: rgba(13, 17, 23, 0.92); backdrop-filter: blur(8px);
+    background: rgba(12, 9, 16, 0.85); backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border);
   }
   nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
   .logo {
     display: flex; align-items: center; gap: 10px;
-    font-weight: 700; color: var(--text); cursor: pointer; white-space: nowrap;
+    font-weight: 800; cursor: pointer; white-space: nowrap; letter-spacing: 0.5px;
+    background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent;
   }
   .logo .mono {
     width: 36px; height: 36px; border-radius: 10px; background: var(--accent);
@@ -71,7 +80,10 @@
 
   .banner {
     padding: 64px 0 48px;
-    background: linear-gradient(135deg, var(--accent-soft), transparent 60%), var(--bg-alt);
+    background:
+      radial-gradient(700px 300px at 85% 0%, rgba(139, 92, 246, 0.28), transparent 70%),
+      radial-gradient(700px 320px at 10% 100%, rgba(236, 0, 140, 0.25), transparent 70%),
+      var(--bg-alt);
     border-bottom: 1px solid var(--border);
   }
   .banner .tag {
@@ -79,6 +91,8 @@
     background: var(--accent-soft); padding: 4px 12px; border-radius: 999px; margin-bottom: 14px;
   }
   .banner h1 { font-size: clamp(1.9rem, 4.5vw, 2.8rem); line-height: 1.15; margin-bottom: 10px; }
+  .banner h1 { background: linear-gradient(90deg, #ffffff 30%, #ffb3dc 70%, #c9b5ff 100%);
+               -webkit-background-clip: text; background-clip: text; color: transparent; }
   .banner p { color: var(--muted); max-width: 660px; font-size: 1.05rem; }
 
   .content { padding: 48px 0 64px; }
@@ -122,7 +136,7 @@
     cursor: pointer; transition: transform 0.15s, border-color 0.15s, background 0.15s;
     display: flex; flex-direction: column; gap: 6px; text-align: left; font: inherit; color: inherit;
   }
-  .tile:hover { transform: translateY(-3px); border-color: var(--accent); background: var(--card-hover); }
+  .tile:hover { transform: translateY(-3px); border-color: var(--accent); background: var(--card-hover); box-shadow: 0 10px 30px rgba(236, 0, 140, 0.12); }
   .tile .icon { font-size: 1.7rem; margin-bottom: 4px; }
   .tile .more { margin-top: auto; padding-top: 10px; color: var(--accent); font-size: 0.88rem; font-weight: 600; }
   .pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
@@ -141,15 +155,15 @@
     display: inline-block; padding: 10px 18px; border-radius: 10px; font-weight: 600; font-size: 0.93rem;
     border: 1px solid var(--border); background: var(--card); color: var(--text); cursor: pointer;
   }
-  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .btn.primary { background: var(--grad); border-color: transparent; color: #fff; box-shadow: 0 6px 20px rgba(236, 0, 140, 0.25); }
   .btn:hover { opacity: 0.9; }
 
   /* Frise */
-  .timeline { border-left: 2px solid var(--border); padding-left: 24px; display: grid; gap: 24px; }
+  .timeline { border-left: 2px solid transparent; border-image: linear-gradient(#ff3ea5, #8b5cf6) 1; padding-left: 24px; display: grid; gap: 24px; }
   .tl { position: relative; }
   .tl::before {
     content: ""; position: absolute; left: -31px; top: 6px; width: 12px; height: 12px;
-    border-radius: 50%; background: var(--accent); border: 3px solid var(--bg);
+    border-radius: 50%; background: var(--grad); border: 3px solid var(--bg);
   }
   .tl .date { font-size: 0.84rem; color: var(--accent); font-weight: 600; }
   .tl p { color: var(--muted); font-size: 0.94rem; }
